@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import Catalog from '../pages/Catalog';
 import Detail from '../pages/Detail';
-import { NoMatch } from '../components/NoMatch';
+// import { NoMatch } from '../components/NoMatch';
 
 
 const CustomRoutes = () => {
