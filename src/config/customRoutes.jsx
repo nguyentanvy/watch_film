@@ -13,9 +13,11 @@ const CustomRoutes = () => {
         <Routes>
           <Route path="/" exact element={<Home/>}/>
           <Route path="/category" element={<Catalog/>}/>
+          <Route path="/movie" element={<Catalog/>}/>
+          <Route path="/tv" element={<Catalog/>}/>
           <Route path="/category/search/:keyword" element={<Catalog />} />
           <Route path="/category/:id" element={<Detail/>} />
-          <Route path="*" element={<NoMatch/>}/>
+          {/* <Route path="*" element={<NoMatch/>}/> */}
         </Routes>
      
     //  </Router>
