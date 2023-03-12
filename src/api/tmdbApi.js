@@ -1,6 +1,6 @@
 import axiosClient from "./axiosClient";
 
-export const category ={
+export const category = {
     movie: 'movie',
     tv: 'tv'
 }
@@ -17,16 +17,17 @@ export const tvType = {
     on_the_air: 'on_the_air'
 }
 
+
 const tmdbApi = {
     getMoviesList: (type, params) => {
         const url = 'movie/' + movieType[type];
-        return axiosClient.get(url, params)//Lấy danh sách phim từ TMDb, được phân loại theo loại (type) được truyền vào.
+        return axiosClient.get(url, params);//Lấy danh sách phim từ TMDb, được phân loại theo loại (type) được truyền vào.
     },
     getTvList: (type, params) => {
         const url = 'tv/' + tvType[type];
-        return axiosClient.get(url, params)//Lấy danh sách chương trình truyền hình từ TMDb, được phân loại theo loại (type) được truyền vào.
+        return axiosClient.get(url, params);//Lấy danh sách chương trình truyền hình từ TMDb, được phân loại theo loại (type) được truyền vào.
     },
-    getVideo: (cate, id) => {
+    getVideos: (cate, id) => {
         const url = category[cate] + '/' + id + '/videos';
         return axiosClient.get(url, {params: {}});//Lấy thông tin về video của một phim hoặc chương trình truyền hình được chỉ định.
     },
@@ -38,8 +39,8 @@ const tmdbApi = {
         const url = category[cate] + '/' + id;
         return axiosClient.get(url, params);//Lấy thông tin chi tiết về một phim hoặc chương trình truyền hình được chỉ định.
     },
-    creadits: (cate, id) => {
-        const url = category[cate] + '/' + id +'/creadits';
+    credits: (cate, id) => {
+        const url = category[cate] + '/' + id + '/credits';
         return axiosClient.get(url, {params: {}});//Lấy danh sách những người tham gia vào việc sản xuất phim hoặc chương trình truyền hình được chỉ định.
     },
     similar: (cate, id) => {
