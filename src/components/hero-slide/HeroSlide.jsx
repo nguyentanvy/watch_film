@@ -46,7 +46,8 @@ const HeroSlide = () => {
                         <SwiperSlide key={i}>
                             {({ isActive }) => (
                                 // <HeroSlideItem item={item} className={`${isActive ? 'active' : ''}`} />
-                                <img src={apiConfig.originalImage(item.backdrop_path)} alt="" />
+                                // <img src={apiConfig.originalImage(item.backdrop_path)} alt="" />
+                                <HeroSlideItem item={item} className={`${isActive ? 'active' : ''}`}/>
                             )}
                         </SwiperSlide>
                     ))
@@ -55,6 +56,37 @@ const HeroSlide = () => {
            
         </div>
     );
+}
+
+const HeroSlideItem = props => {
+    let navigate = useNavigate();
+    const item = props.item;
+    const background = apiConfig.originalImage(item.backdrop_path ? item.backdrop_path : item.poster_path);
+    return(
+        <div 
+            className={`hero-slide__item ${props.className}`}
+            style={{backgroundImage: `url(${background})`}}
+        
+        >
+            <div className="hero-slide__item__content container">
+                <div className="hero-slide__item__content__info">
+                    <h2 className="title">{item.title}</h2>
+                    <div className="overview">{item.overview}</div>
+                    <div className="btns">
+                        <Button onClick={() => navigate("/movie/" +item.id)}>
+                            Watch now
+                        </Button>
+                        <OutlineButton onClick={() => console.log('trailer')}>
+                            Watch trailer
+                        </OutlineButton>
+                    </div>
+                </div>
+                <div className="hero-slide__item__content__poster">
+                    <img src={apiConfig.w500Image(item.poster_path)} alt=""/>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 
