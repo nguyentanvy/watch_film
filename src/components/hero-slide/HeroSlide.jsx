@@ -14,16 +14,16 @@ import { useNavigate } from 'react-router-dom';
 
 const HeroSlide = () => {
 
-    SwiperCore.use([Autoplay]);
+    SwiperCore.use([Autoplay]);//sử dụng module Autoplay trong Swiper bằng cách truyền nó vào trong một mảng, sau đó đưa mảng này vào phương thức use. Sau khi kích hoạt plugin này, ta có thể sử dụng các tùy chọn được cung cấp bởi plugin này để cấu hình chức năng autoplay cho Swiper
 
     const [movieItems, setMovieItems] = useState([]);
 
     useEffect(() => {
         const getMovies = async () => {
-            const params = {page: 1}
+            const params = {page: 1}// params trả về danh sách phim ở trang đầu tiên
             try {
-                const response = await tmdbApi.getMoviesList(movieType.popular, {params});
-                setMovieItems(response.results.slice(1, 4));
+                const response = await tmdbApi.getMoviesList(movieType.popular, {params});// call API bằng cách sử dụng phương thức "getMoviesList" được định trong mmodule tmdbAPI
+                setMovieItems(response.results.slice(1, 4));//lấy ra phần tử từ vị trí thứ hai đến vị trí thứ tư (tức chỉ lấy 3 phim) và cập nhật state "movieItems".
                 console.log(response);
             } catch(error){
                 console.log('error:',error.message);
@@ -35,6 +35,7 @@ const HeroSlide = () => {
     return (
         <div className="hero-slide">
             <Swiper
+                //đối tượng "Swiper" được sử dụng để tạo ra một thanh trượt cho danh sách các phim
                 modules={[Autoplay]}
                 grabCursor={true}
                 spaceBetween={0}
@@ -54,7 +55,7 @@ const HeroSlide = () => {
                 }
             </Swiper>
             {
-                movieItems.map((item, i) => <TrailerModal key={i} item={item}/>)
+                movieItems.map((item, i) => <TrailerModal key={i} item={item}/>)//Hiển thị video trailer của các phim
             }
            
         </div>
@@ -64,18 +65,18 @@ const HeroSlide = () => {
 const HeroSlideItem = props => {
     let navigate = useNavigate();
     const item = props.item;
-    const background = apiConfig.originalImage(item.backdrop_path ? item.backdrop_path : item.poster_path);
+    const background = apiConfig.originalImage(item.backdrop_path ? item.backdrop_path : item.poster_path);// tạo url cho ảnh nền rồi gán vào biến background
     
     const setModalActive = async() => {
         const modal = document.querySelector(`#modal_${item.id}`);
-        const videos = await tmdbApi.getVideos(category.movie, item.id);
+        const videos = await tmdbApi.getVideos(category.movie, item.id);// danh sách các video liên quan đến một bộ phim cụ thể
         if(videos.results.length > 0){
             const videSrc = 'https://www.youtube.com/embed/' + videos.results[0].key;
-            modal.querySelector('.modal__content > iframe').setAttribute('src', videSrc);
+            modal.querySelector('.modal__content > iframe').setAttribute('src', videSrc);//sử dụng phương thức querySelector của phần tử modal để tìm phần tử <iframe> có class là modal__content. Sau đó, đoạn code sử dụng phương thức setAttribute để thiết lập thuộc tính src của phần tử <iframe> với giá trị của biến videSrc.
         } else{
             modal.querySelector('.modal__content').innerHTML = 'No trailer'
         }
-        modal.classList.toggle('active');
+        modal.classList.toggle('active');// thêm lớp 'active' vào modal nếu nó chưa có, hoặc xóa nó nếu modal đã có lớp 'active'.
     }
 
     return(
