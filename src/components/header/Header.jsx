@@ -33,8 +33,9 @@ const Header = () => {
       }else{
         headerRef.current.classList.remove('shrink')//nếu vị trí cuộn nhỏ hơn hoặc bằng 100px, phần tử header sẽ bị xóa lớp CSS 'shrink'
       }
-      window.addEventListener('scroll', shrinkHeader);//đăng ký một sự kiện lắng nghe (event listener) cho sự kiện cuộn trang (scroll)
-    }//hàm shrinkHeader() sẽ được gọi mỗi khi người dùng cuộn trang và phần tử header sẽ được thay đổi kích thước tương ứng
+    }
+    window.addEventListener('scroll', shrinkHeader);//đăng ký một sự kiện lắng nghe (event listener) cho sự kiện cuộn trang (scroll)
+    //hàm shrinkHeader() sẽ được gọi mỗi khi người dùng cuộn trang và phần tử header sẽ được thay đổi kích thước tương ứng
     return () => {
       window.removeEventListener('scroll', shrinkHeader);
     };
@@ -45,7 +46,7 @@ const Header = () => {
     <div className="header__wrap container">
       <div className="logo">
         <img src={logo} alt="" />
-        <Link to="/">Movie</Link>
+        <Link to="/">VMovie</Link>
       </div>
       <ul className="header__nav">
         {
