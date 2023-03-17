@@ -14,6 +14,7 @@ const CustomRoutes = () => {
           <Route path="/" exact element={<Home/>}/>
           <Route path="/category" element={<Catalog/>}/>
           <Route path="/movie" element={<Catalog/>}/>
+          <Route path="/movie/:id" element={<Detail/>}/>
           <Route path="/tv" element={<Catalog/>}/>
           <Route path="/category/search/:keyword" element={<Catalog />} />
           <Route path="/category/:id" element={<Detail/>} />
