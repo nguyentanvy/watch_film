@@ -8,6 +8,7 @@ class Layout extends React.Component{
         return(
             <>
             <Header {...this.props}/>
+            {/* {console.log("props:",this.props)} */}
             <CustomRoutes/>
             <Footer/>
             </>
