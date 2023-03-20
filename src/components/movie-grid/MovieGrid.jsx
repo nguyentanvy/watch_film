@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import './movie-grid.scss';
 
 import MovieCard from '../movie-card/MovieCard';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import tmdbApi, { category, movieType, tvType } from '../../api/tmdbApi';
-import { OutlineButton } from '../button/Button';
+import Button, { OutlineButton } from '../button/Button';
+import Input from '../input/input';
 
 const MovieGrid = props => {
     const [items, setItems] = useState([]);
@@ -14,6 +15,7 @@ const MovieGrid = props => {
     const [totalPage, setTotalPage] = useState(0);
 
     const {keyword} = useParams();
+    console.log("keyword:",keyword);
 
     useEffect(() => {
         const getList = async () => {
@@ -22,7 +24,8 @@ const MovieGrid = props => {
                 const params = {};
                 switch(props.category) {
                     case category.movie:
-                        response = await tmdbApi.getMoviesList(movieType.upcoming, {params})
+                        response = await tmdbApi.getMoviesList(movieType.upcoming, {params})//lấy ra danh sách phim sắp ra mắt
+                        console.log("response:",response);
                         break;
                     default:
                         response = await tmdbApi.getTvList(tvType.popular, {params})
@@ -58,7 +61,7 @@ const MovieGrid = props => {
                 page: page + 1,
                 query: keyword
             }
-            response = await tmdbApi.search(props.category, {params});
+            response = await tmdbApi.search(props.category, {params});//load thêm trang dựa theo keyword
         }
         setItems([...items, ...response.results]);
         setPage(page + 1);
@@ -66,6 +69,9 @@ const MovieGrid = props => {
 
     return (
         <>
+            <div className="section mb-3">
+                <MovieSearch category={props.category} keyword={keyword}/>
+            </div>
             <div className="movie-grid">
                 {
                     items.map((item,i) => 
@@ -73,7 +79,7 @@ const MovieGrid = props => {
                 }
             </div>
             {
-                page < totalPage ? (
+                page < totalPage ? (//Nếu page nhỏ hơn totalPage, một nút "Load more" sẽ được hiển thị
                     <div className="movie-grid__loadmore">
                         <OutlineButton className="small" onClick={loadMore}>Load more</OutlineButton>
                     </div>
@@ -83,4 +89,41 @@ const MovieGrid = props => {
     )
 }
 
+const MovieSearch = props => {
+    let navigate = useNavigate();
+
+    const [keyword, setKeyword] = useState(props.keyword ? props.keyword : '');
+    const goToSearch = useCallback(
+        () => {
+            if(keyword.trim().length > 0){
+                navigate(`/${category[props.category]}/search/${keyword}`)
+            }
+        },[keyword, props.category, navigate]
+    )
+
+    useEffect(() => {
+        const enterEvent = (e) => {
+            e.preventDefault();
+            if(e.keyCode === 13){
+                goToSearch();
+            }
+        }
+        document.addEventListener('keyup', enterEvent)
+        return () => {
+            document.removeEventListener('keyup', enterEvent)
+        };
+    }, [keyword, goToSearch]);
+
+    return(
+        <div className="movie-search">
+            <Input
+            type="text"
+            placeholder="Enter keyword"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            />
+            <Button className="small" onClick={goToSearch}>Search</Button>
+        </div>
+    )
+}
 export default MovieGrid
