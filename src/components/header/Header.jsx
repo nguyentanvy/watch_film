@@ -46,7 +46,7 @@ const Header = () => {
     <div className="header__wrap container">
       <div className="logo">
         <img src={logo} alt="" />
-        <Link to="/">VMovie</Link>
+        <Link to="/">NTVMovie</Link>
       </div>
       <ul className="header__nav">
         {
