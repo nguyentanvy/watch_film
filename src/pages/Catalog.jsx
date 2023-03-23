@@ -8,6 +8,7 @@ import { category as cate } from '../api/tmdbApi';
 import MovieGrid from '../components/movie-grid/MovieGrid';
 
 const Catalog = () => {
+    window.scrollTo(0, 0);
 
     const { category } = useParams();
     // console.log(category);

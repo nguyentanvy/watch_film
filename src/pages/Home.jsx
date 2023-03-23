@@ -6,6 +6,7 @@ import MovieList from '../components/movie-list/MovieList';
 import { category, movieType, tvType } from '../api/tmdbApi';
 
 const Home = () => {
+  window.scrollTo(0, 0);
   return (
     <div>
         <HeroSlide/>

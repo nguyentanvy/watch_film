@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import Catalog from '../pages/Catalog';
 import Detail from '../pages/detail/Detail';
-// import { NoMatch } from '../components/NoMatch';
+import { NoMatch } from '../components/NoMatch';
 
 
 const CustomRoutes = () => {
@@ -12,14 +12,20 @@ const CustomRoutes = () => {
     //  <Router>
         <Routes>
           <Route path="/" exact element={<Home/>}/>
+          
           <Route path="/:category" element={<Catalog/>}/>
           <Route path="/:category/search/:keyword" element={<Catalog />} />
           <Route path="/:category/:id" element={<Detail/>} />
-          {/* <Route path="/movie" element={<Catalog/>}/>
-          <Route path="/movie/:id" element={<Detail/>}/>
-          <Route path="/tv" element={<Catalog/>}/> */}
+
+          {/* <Route path="/:movie" element={<Catalog/>}/>
+          <Route path="/:movie/:id" element={<Detail/>}/>
+          <Route path="/:tv" element={<Catalog/>}/> 
+          <Route path="/:tv/:id" element={<Detail/>}/>
+          <Route path="/:tv/search/:keyword" element={<Catalog />} />
+          <Route path="/:movie/search/:keyword" element={<Catalog />} /> */}
+         
+          <Route path="*" element={<NoMatch/>}/>
           
-          {/* <Route path="*" element={<NoMatch/>}/> */}
         </Routes>
      
     //  </Router>

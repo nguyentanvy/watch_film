@@ -34,7 +34,7 @@ const Video = props => {
 
     useEffect(() => {
         const height = iframeRef.current.offsetWidth * 9/16 + 'px';
-        iframeRef.current.setAttribute('height', height);
+        iframeRef.current.setAttribute('height', height); //chiều cao sẽ được tính dựa trên chiều rộng theo tỉ lệ 9:16.
     }, []);
 
     return(

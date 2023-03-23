@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import SwiperCore, { Autoplay } from 'swiper';
+import SwiperCore, { Autoplay, Pagination} from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+
+import 'swiper/css/pagination';
 
 import Button, { OutlineButton } from '../button/Button';
 import Modal, { ModalContent } from '../modal/Modal';
@@ -14,8 +17,8 @@ import { useNavigate } from 'react-router-dom';
 
 const HeroSlide = () => {
 
-    SwiperCore.use([Autoplay]);//sử dụng module Autoplay trong Swiper bằng cách truyền nó vào trong một mảng, sau đó đưa mảng này vào phương thức use. Sau khi kích hoạt plugin này, ta có thể sử dụng các tùy chọn được cung cấp bởi plugin này để cấu hình chức năng autoplay cho Swiper
-
+    SwiperCore.use([Autoplay, Pagination]);//sử dụng module Autoplay trong Swiper bằng cách truyền nó vào trong một mảng, sau đó đưa mảng này vào phương thức use. Sau khi kích hoạt plugin này, ta có thể sử dụng các tùy chọn được cung cấp bởi plugin này để cấu hình chức năng autoplay cho Swiper
+    // SwiperCore.use([Pagination]);
     const [movieItems, setMovieItems] = useState([]);
 
     useEffect(() => {
@@ -23,7 +26,7 @@ const HeroSlide = () => {
             const params = {page: 1}// params trả về danh sách phim ở trang đầu tiên
             try {
                 const response = await tmdbApi.getMoviesList(movieType.popular, {params});// call API bằng cách sử dụng phương thức "getMoviesList" được định trong mmodule tmdbAPI
-                setMovieItems(response.results.slice(1, 4));//lấy ra phần tử từ vị trí thứ hai đến vị trí thứ tư (tức chỉ lấy 3 phim) và cập nhật state "movieItems".
+                setMovieItems(response.results.slice(1, 10));//lấy ra phần tử từ vị trí thứ hai đến vị trí thứ tư (tức chỉ lấy 3 phim) và cập nhật state "movieItems".
                 console.log(response);
             } catch(error){
                 console.log('error:',error.message);
@@ -36,11 +39,14 @@ const HeroSlide = () => {
         <div className="hero-slide">
             <Swiper
                 //đối tượng "Swiper" được sử dụng để tạo ra một thanh trượt cho danh sách các phim
-                modules={[Autoplay]}
+                modules={[Autoplay, Pagination]}
+                pagination={{ clickable: true }}
+                
                 grabCursor={true}
                 spaceBetween={0}
                 slidesPerView={1}
                 // autoplay={{delay: 3000}}
+                
             >
                 {
                     movieItems.map((item, i) => (

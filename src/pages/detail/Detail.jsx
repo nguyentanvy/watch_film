@@ -9,6 +9,7 @@ import VideoList from './VideoList';
 import MovieList from '../../components/movie-list/MovieList';
 
 const Detail = () => {
+  // window.scrollTo(0, 0);
   const { category, id } = useParams();
 
     const [item, setItem] = useState(null);
@@ -32,6 +33,7 @@ const Detail = () => {
           <div className="mb-3 movie-content container">
             <div className="movie-content__poster">
               <div className="movie-content__poster__img" style={{backgroundImage: `url(${apiConfig.originalImage(item.poster_path || item.backdrop_path)})`}}></div>
+              {/* nếu item.poster_path không tồn tại hoặc bằng chuỗi rỗng, thì item.backdrop_path sẽ được sử dụng thay thế */}
             </div>
             <div className="movie-content__infor">
               <h1 className="title">
@@ -63,6 +65,7 @@ const Detail = () => {
                   <h2>Similar</h2>
               </div>
               <MovieList category={category} type="similar" id={item.id}/>
+              {/* Lấy danh sách phim hoặc chương trình cùng thể loại */}
             </div>
           </div>
         </>

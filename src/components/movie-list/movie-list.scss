@@ -9,4 +9,42 @@
             width:40%;
         }
     }
+    @mixin swiper-button{
+        background: linear-gradient(90deg, #000000 35%, rgba(0, 0, 0, 0.5) 100%);
+        box-shadow: none;
+        color: #fff;
+        top: 41%;
+        opacity: 0;
+        // @include mobile{
+        //     opacity: 1;
+        // }
+    }
+    .swiper-button-disabled{
+        opacity: 0 !important;
+        visibility: hidden;
+    }
+    .swiper-button-prev{
+        @include swiper-button();
+        left: 0px;
+        &:hover{
+            opacity: 1;
+        }
+        &.active {
+            opacity: 1;
+            visibility: visible;
+          }
+    }
+    .swiper-button-next{
+        @include swiper-button();
+        right: 0px;
+        &.active {
+            opacity: 1;
+            visibility: visible;
+          }
+        &:hover{
+            opacity: 1;
+        }
+        
+    }
+    
 }
