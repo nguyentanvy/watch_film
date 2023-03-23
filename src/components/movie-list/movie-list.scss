@@ -1,5 +1,12 @@
 @use '../../scss/breakpoint' as *;
 .movie-list{
+    &:hover{
+        .swiper-button-next,
+        .swiper-button-prev{
+            opacity: 1;
+        }
+
+    }
     .swiper-slide{
         width: 15%;
         @include tablet{
@@ -15,6 +22,7 @@
         color: #fff;
         top: 41%;
         opacity: 0;
+        height:68px;
         // @include mobile{
         //     opacity: 1;
         // }
