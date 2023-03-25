@@ -8,12 +8,12 @@ import SwiperCore, { Navigation} from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-import Button from '../button/Button';
+// import Button from '../button/Button';
 
 import tmdbApi, { category } from '../../api/tmdbApi';
-import apiConfig from '../../api/apiConfig';
+// import apiConfig from '../../api/apiConfig';
 import MovieCard from '../movie-card/MovieCard';
 
 
