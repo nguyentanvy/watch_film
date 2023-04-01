@@ -126,6 +126,12 @@ const MovieSearch = props => {
     //     page++;
     //     }
     //     console.log("responseAll:movie",response);
+    //     console.log(
+    //         response.map(itemm => (
+    //             itemm.title
+    //         ))
+    //     )
+        
     //     break;
     // default:
     //     while (page <= totalPages) {

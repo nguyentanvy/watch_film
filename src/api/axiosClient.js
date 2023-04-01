@@ -6,12 +6,12 @@ import apiConfig from './apiConfig';
 const axiosClient = axios.create({//Đối tượng client được tạo ra thông qua hàm axios.create() và được gán cho biến axiosClient
     baseURL: apiConfig.baseUrl,// đường dẫn cơ sở cho các request.
     headers:{//đại diện cho các header mà client gửi trong request
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json'//máy chủ sẽ hiểu rằng yêu cầu đang gửi dữ liệu trong định dạng JSON và sẽ xử lý dữ liệu đó theo cách thích hợp
     },
     // paramsSerializer: params => queryString.stringify({...params, api_key: apiConfig.apiKey})//hàm này sẽ sử dụng thư viện query-string để chuyển đổi các tham số thành một chuỗi query string, đồng thời thêm tham số api_key với giá trị được lấy từ thuộc tính apiKey của đối tượng apiConfig
     paramsSerializer: {
         serialize: (params) => queryString.stringify({ ...params, api_key: apiConfig.apiKey }, {arrayFormat: 'brackets'})
-      },
+      },//arrayFormat: 'brackets' được sử dụng để chuyển đổi các mảng trong đối tượng thành các chuỗi query string với các dấu ngoặc vuông đặt trước và sau tên tham số.
 })
 axiosClient.interceptors.request.use(async (config) => config);// thay đổi hoặc xử lý các yêu cầu trước khi gửi chúng đến server
 axiosClient.interceptors.response.use((response) => {

@@ -42,6 +42,10 @@ const Footer = () => {
           </div>
           
         </div>
+       
+      </div>
+      <div className="footer__copyRight">
+        © Copyright 2023 NTV. All rights reserved.                
       </div>
     </div>
   )
