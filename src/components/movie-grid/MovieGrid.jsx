@@ -28,7 +28,7 @@ const MovieGrid = props => {
                         console.log("response:movie",response);
                         break;
                     default:
-                        response = await tmdbApi.getTvList(tvType.popular, {params})
+                        response = await tmdbApi.getTvList(tvType.on_the_air, {params})
                         console.log("response:tv",response);
 
                 }

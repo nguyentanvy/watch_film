@@ -17,7 +17,14 @@ const CatalogPopular = () => {
     return (
         <>
             <PageHeader>
-                {category === cate.movie ? 'Movies' : 'TV Series'}
+                {/* {(category === cate.movie && type === cate.popular)
+                 ? 'Trending Movies' : 
+                 (category === cate.movie && type === cate.top_rated ? 'Top Rated Movies'
+                 : (category === cate.tv && type === cate.popular ? 
+                    'Trending TV' : 'Top Rated TV'))
+                 } */}
+                 {category === cate.movie ? 'Movies' : 'TV Series'}
+
             </PageHeader>
             <div className="container">
                 <div className="section mb-3">
