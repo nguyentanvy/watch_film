@@ -10,27 +10,47 @@ import Input from '../input/input';
 
 const MovieGrid = props => {
     const [items, setItems] = useState([]);
-
+    const [genreSelect, setGenreSelect] = useState('');
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
 
     const {keyword} = useParams();
     console.log("keyword:",keyword);
 
+    const [genres, setGenres] = useState([]);
+
     useEffect(() => {
         const getList = async () => {
             let response = null;
             if(keyword === undefined) {
                 const params = {};
-                switch(props.category) {
-                    case category.movie:
-                        response = await tmdbApi.getMoviesList(movieType.upcoming, {params})//lấy ra danh sách phim sắp ra mắt
-                        console.log("response:movie",response);
-                        break;
-                    default:
-                        response = await tmdbApi.getTvList(tvType.on_the_air, {params})
-                        console.log("response:tv",response);
-
+               
+                if(genreSelect === ''){
+                    switch(props.category) {
+                        case category.movie:
+                            response = await tmdbApi.getMoviesList(movieType.upcoming, {params})//lấy ra danh sách phim sắp ra mắt
+                            console.log("response:movie",response);
+                            break;
+                        default:
+                            response = await tmdbApi.getTvList(tvType.on_the_air, {params})
+                            console.log("response:tv",response);
+    
+                    }
+                }
+                else{
+                    const params ={
+                        with_genres : genreSelect
+                    }
+                    switch(props.category) {
+                        case category.movie:
+                            response = await tmdbApi.discover(category.movie, {params})//lấy ra danh sách phim sắp ra mắt
+                            console.log("response:movie",response);
+                            break;
+                        default:
+                            response = await tmdbApi.discover(category.tv, {params})
+                            console.log("response:tv",response);
+    
+                    }
                 }
             } else{
                 const params = {
@@ -43,7 +63,24 @@ const MovieGrid = props => {
             setTotalPage(response.total_pages);
         }
         getList();
-    }, [props.category, keyword]);
+    }, [genreSelect,props.category, keyword]);
+
+    useEffect(()=>{
+        const getGenres = async () => {
+            let response = null;
+            switch(props.category) {
+                case category.movie:
+                    response = await tmdbApi.getGenres(category.movie);
+                    console.log("responseGenre:", response);
+                    break;
+                default:
+                    response = await tmdbApi.getGenres(category.tv);
+            }
+          setGenres(response.genres);  
+        }
+
+        getGenres();
+    },[props.category])
 
     const loadMore = async () => {
         let response = null;
@@ -69,6 +106,11 @@ const MovieGrid = props => {
         setPage(page + 1);
     }
 
+    const handleSelect = (e) =>{
+        console.log("target:", e.target.value);
+        setGenreSelect(e.target.value);
+    }
+
     return (
         <>
             <div className="section mb-3">
@@ -85,6 +127,16 @@ const MovieGrid = props => {
                         ))
                     }
                 </div> */}
+                <div>
+                    <select name="genres" id="genres" onChange={handleSelect}>
+                        <option style={{ display: "none" }} value={" "}>Genres</option>
+                        {
+                            genres.map((genre,i) => (
+                                    <option key={i} name={genre.name} value={genre.id}>{genre.name}</option>
+                            ))
+                        }
+                    </select>
+                </div>
 
             </div>
             <div className="movie-grid">

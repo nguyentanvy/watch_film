@@ -27,7 +27,7 @@ body{
     background-color: $body-bg;
     color: $txt-color;
     @include mobile {
-        margin-top: 3rem;
+        margin-bottom: 3rem;
     }
 
 }

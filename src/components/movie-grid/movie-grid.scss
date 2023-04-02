@@ -14,7 +14,6 @@
     }
 }
 .movie-search{
-    
     position: relative;
     width: 100%;
     max-width: 500px;
@@ -53,7 +52,28 @@
         display: block;
     }
  }
- 
+ select{
+    background: #141414;
+    cursor: pointer;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.25rem 1.5rem;
+    font-weight: 600;
+    letter-spacing: .06vw;
+    margin-top: 2rem;
+    padding: 5px;
+    border-width: 2px;
+    max-width: 200px;
+    width: 100%;
+    option{
+        @include mobile{
+            line-height: 1;
+        }
+        }
+       
+}
+
 // .movie-search:focus + .dropdown
 // {
 //     display: block;

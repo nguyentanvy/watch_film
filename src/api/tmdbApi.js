@@ -47,5 +47,13 @@ const tmdbApi = {
         const url = category[cate] + '/' + id + '/similar';
         return axiosClient.get(url, {params: {}});//Lấy danh sách các phim hoặc chương trình truyền hình tương tự với phim hoặc chương trình truyền hình được chỉ định.
     },
+    getGenres: (cate) => {
+        const url = 'genre/' + category[cate] + '/list';
+        return axiosClient.get(url, {params: {}})// lấy danh sách thể loại tv, movie
+    },
+    discover: (cate, params) => {
+        const url = 'discover/' + category[cate];
+        return axiosClient.get(url, params)// select theo id thể loại
+    },
 }
 export default tmdbApi;
