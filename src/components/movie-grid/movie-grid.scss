@@ -37,15 +37,24 @@
     display: none;
     width: 100%;
     max-width: 500px;
-    padding: 16px 0px;
+    // padding: 16px 0px;
     background: #202020;
     border-radius: 8px;
     .dropdown-row{
         border-bottom: 0.2px solid #303030;
+        padding: 8px 5px;
         
         &:hover{ 
             background: #2c2c2e;
             cursor: pointer;
+            border-radius: 8px;
+        }
+        &:last-child{
+            border-bottom: none;
+            padding-bottom: 12px;
+        }
+        &:first-child{
+            padding-top:12px;
         }
     }
     &.Showdropdown{

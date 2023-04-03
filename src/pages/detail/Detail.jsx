@@ -2,26 +2,29 @@ import React, { useEffect, useState } from 'react';
 
 import tmdbApi from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './detail.scss';
 import CastList from './CastList';
 import VideoList from './VideoList';
 import MovieList from '../../components/movie-list/MovieList';
+import Button from '../../components/button/Button';
 
 const Detail = () => {
   // window.scrollTo(0, 0);
   const { category, id } = useParams();
-
+  let navigate = useNavigate();
     const [item, setItem] = useState(null);
 
     useEffect(() => {
         const getDetail = async () => {
             const response = await tmdbApi.detail(category, id, {params:{}});
             setItem(response);
+             console.log("watch",response);
             window.scrollTo(0,0);
         }
         getDetail();
     }, [category, id]);
+
 
   return (
    <>
@@ -34,6 +37,11 @@ const Detail = () => {
             <div className="movie-content__poster">
               <div className="movie-content__poster__img" style={{backgroundImage: `url(${apiConfig.originalImage(item.poster_path || item.backdrop_path)})`}}></div>
               {/* nếu item.poster_path không tồn tại hoặc bằng chuỗi rỗng, thì item.backdrop_path sẽ được sử dụng thay thế */}
+                {/* {
+                      <Button className="watch-btn" onClick={() => navigate("/"+category+"/watch/"+item.id)}>
+                                      Watch now
+                      </Button>
+                  } */}
             </div>
             <div className="movie-content__infor">
               <h1 className="title">
@@ -46,6 +54,11 @@ const Detail = () => {
                   ))
                 }
               </div>
+              {
+                      <Button className="watch-btn" onClick={() => navigate("/"+category+"/watch/"+item.id)}>
+                                      Watch now
+                      </Button>
+                  }
               <p className="overview">{item.overview}</p>
               <div className="cast">
                 <div className="section__header">

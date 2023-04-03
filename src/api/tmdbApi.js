@@ -55,5 +55,9 @@ const tmdbApi = {
         const url = 'discover/' + category[cate];
         return axiosClient.get(url, params)// select theo id thể loại
     },
+    // getWatch: (cate, id) => {
+    //     const url = category[cate] + '/' + id ;
+    //     return axiosClient.get(url, {params: {}});//Lấy danh sách các phim hoặc chương trình truyền hình tương tự với phim hoặc chương trình truyền hình được chỉ định.
+    // },
 }
 export default tmdbApi;

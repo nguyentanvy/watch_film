@@ -96,7 +96,7 @@ const MovieGridPopular = props => {
             {
                 page < totalPage ? (//Nếu page nhỏ hơn totalPage, một nút "Load more" sẽ được hiển thị
                     <div className="movie-grid__loadmore">
-                        <OutlineButton className="small" onClick={loadMore}><i class='bx bxs-chevron-down' ></i> Load more</OutlineButton>
+                        <OutlineButton className="small" onClick={loadMore}><i className='bx bxs-chevron-down' ></i> Load more</OutlineButton>
                     </div>
                 ):null
             }

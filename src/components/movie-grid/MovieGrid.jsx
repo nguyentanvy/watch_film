@@ -13,9 +13,9 @@ const MovieGrid = props => {
     const [genreSelect, setGenreSelect] = useState('');
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
-
+    let navigate = useNavigate();
     const {keyword} = useParams();
-    console.log("keyword:",keyword);
+    // console.log("keyword:",keyword);
 
     const [genres, setGenres] = useState([]);
 
@@ -59,7 +59,7 @@ const MovieGrid = props => {
                 response = await tmdbApi.search(props.category, {params});
             }
             setItems(response.results);
-            console.log("responsersuilt:", response.results);
+            // console.log("responsersuilt:", response.results);
             setTotalPage(response.total_pages);
         }
         getList();
@@ -71,7 +71,7 @@ const MovieGrid = props => {
             switch(props.category) {
                 case category.movie:
                     response = await tmdbApi.getGenres(category.movie);
-                    console.log("responseGenre:", response);
+                    // console.log("responseGenre:", response);
                     break;
                 default:
                     response = await tmdbApi.getGenres(category.tv);
@@ -107,7 +107,8 @@ const MovieGrid = props => {
     }
 
     const handleSelect = (e) =>{
-        console.log("target:", e.target.value);
+        navigate(`/${category[props.category]}`)
+        // console.log("target:", e.target.value);
         setGenreSelect(e.target.value);
     }
 
@@ -148,7 +149,7 @@ const MovieGrid = props => {
             {
                 page < totalPage ? (//Nếu page nhỏ hơn totalPage, một nút "Load more" sẽ được hiển thị
                     <div className="movie-grid__loadmore">
-                        <OutlineButton className="small" onClick={loadMore}><i class='bx bxs-chevron-down' ></i> Load more</OutlineButton>
+                        <OutlineButton className="small" onClick={loadMore}><i className='bx bxs-chevron-down' ></i> Load more</OutlineButton>
                     </div>
                 ):null
             }
@@ -235,7 +236,7 @@ const MovieSearch = props => {
 
     return(
         <>
-            <div className="movie-search" onFocus={() => {headerRef.current.classList.add('Showdropdown')}}
+            <div className="movie-search" onFocus={() => { headerRef.current.classList.add('Showdropdown')}}
             onBlur={() => {
                 // Sử dụng setTimeout để xử lý việc click vào phần tử con trước khi nó bị ẩn
                 setTimeout(() => {
