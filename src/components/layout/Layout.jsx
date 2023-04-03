@@ -47,7 +47,7 @@ function Layout(props) {
         {/* {console.log("props:",props)} */}
         <CustomRoutes/>
         <Footer/>
-        <button ref={buttonRef} onClick={top} className="topbtn showbtn">Top</button>
+        <button ref={buttonRef} onClick={top} className="topbtn showbtn"><i class='bx bxs-chevron-up'></i></button>
         </>
     )
 }
