@@ -79,6 +79,36 @@
                 background-color: $body-bg;
             }
         }
+        .module-btn{
+            a.facebook-share-button {
+                display: inline-block;
+                background-color: #3b5998;
+                // color: #fff;
+                // padding: 8px 16px;
+                box-shadow: 0px 0px 7px 8px rgba(21, 0, 255, 0.302);
+                transition: box-shadow 0.3s ease;
+                text-decoration: none;
+                margin-left: 0.5rem;
+                &:hover{
+                    box-shadow: 0px 0px 7px 15px rgba(21, 0, 255, 0.302);
+                    color: $white;
+                }
+              }
+        }
+        .release-date ,.runtime ,.rating{
+            h3{
+                max-width: 8rem;
+                width: 100%;
+                margin-right: 0.5rem;
+                font-family: $font-family;
+                font-size: 1.17em;
+                font-weight: bold;
+            }
+            .star{
+                margin-left: 0.5rem;
+                
+            }
+        }
     }
 }
 .casts{

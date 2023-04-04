@@ -89,5 +89,27 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
+    <!-- on share fb -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : 'YOUR_APP_ID',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v11.0'
+        });
+      };
+      
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0" nonce="IT27At3R"></script>
+
   </body>
 </html>
