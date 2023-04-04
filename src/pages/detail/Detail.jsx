@@ -12,7 +12,9 @@ import Button from '../../components/button/Button';
 const Detail = () => {
   // window.scrollTo(0, 0);
   const currentUrl = window.location.href;
-  window.FB.XFBML.parse();
+  if(window.FB){
+    window.FB.XFBML.parse();
+  }
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
   const { category, id } = useParams();
   let navigate = useNavigate();
@@ -28,6 +30,27 @@ const Detail = () => {
         getDetail();
     }, [category, id]);
 
+
+
+    useEffect(() => {
+      // Load Facebook SDK asynchronously
+      window.fbAsyncInit = function() {
+        window.FB.init({
+          // appId      : '1234567890',
+          xfbml      : true,
+          version    : 'v16.0'
+        });
+      };
+  
+      // Load the SDK's source asynchronously
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    }, []);
 
   return (
    <>
@@ -169,10 +192,13 @@ const Detail = () => {
             <div className="section mb-3">
               <VideoList id={item.id}/>
             </div>
-            {/* <div className="section mb-3">
-            <div className="fb-comments" data-href={currentUrl} 
-              data-numposts="5" data-width=""></div>
-            </div> */}
+            <div className="section mb-3">
+              {/* <div className="fb-comments" data-href={currentUrl} 
+                data-numposts="5" data-width=""></div> */}
+
+              <div id="fb-root"></div>
+              <div className="fb-comments" data-href={currentUrl} data-numposts="5"></div>
+            </div>
             <div className="section mb-3">
               <div className="section__header mb-2">
                   <h2>Similar</h2>
