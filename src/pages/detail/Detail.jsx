@@ -12,6 +12,7 @@ import Button from '../../components/button/Button';
 const Detail = () => {
   // window.scrollTo(0, 0);
   const currentUrl = window.location.href;
+  window.FB.XFBML.parse();
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
   const { category, id } = useParams();
   let navigate = useNavigate();
@@ -169,9 +170,8 @@ const Detail = () => {
               <VideoList id={item.id}/>
             </div>
             <div className="section mb-3">
-            <div class="fb-comments" data-href={currentUrl} data-width="" data-numposts="10">
-
-            </div>
+            <div className="fb-comments" data-href={currentUrl} 
+              data-numposts="5" data-width=""></div>
             </div>
             <div className="section mb-3">
               <div className="section__header mb-2">
