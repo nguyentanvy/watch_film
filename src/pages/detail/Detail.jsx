@@ -169,10 +169,10 @@ const Detail = () => {
             <div className="section mb-3">
               <VideoList id={item.id}/>
             </div>
-            <div className="section mb-3">
+            {/* <div className="section mb-3">
             <div className="fb-comments" data-href={currentUrl} 
               data-numposts="5" data-width=""></div>
-            </div>
+            </div> */}
             <div className="section mb-3">
               <div className="section__header mb-2">
                   <h2>Similar</h2>
