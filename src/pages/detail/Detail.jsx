@@ -12,9 +12,7 @@ import Button from '../../components/button/Button';
 const Detail = () => {
   // window.scrollTo(0, 0);
   const currentUrl = window.location.href;
-  if(window.FB){
-    window.FB.XFBML.parse();
-  }
+  
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
   const { category, id } = useParams();
   let navigate = useNavigate();
@@ -33,6 +31,9 @@ const Detail = () => {
 
 
     useEffect(() => {
+      if(window.FB){
+        window.FB.XFBML.parse();
+      }
       // Load Facebook SDK asynchronously
       window.fbAsyncInit = function() {
         window.FB.init({
@@ -47,10 +48,11 @@ const Detail = () => {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        js.src = "https://connect.facebook.net/en_US/all.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     }, []);
+    //lỗi không hiện liên quan đến quá trình init sdk của facebook
 
   return (
    <>
