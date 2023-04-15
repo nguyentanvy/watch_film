@@ -123,14 +123,12 @@ const Detail = () => {
                 </p>
                 
               </div>
-
               <div className="runtime">
                 <h3 style={{display: 'inline-block'}}>Runtime:</h3>
                 <p style={{display: 'inline-block'}}>
-
                   {item.runtime
                     ? item.runtime + 'min'
-                    : item.episode_run_time.length>0
+                    : item.episode_run_time && item.episode_run_time.length>0
                       ? item.episode_run_time[0] + 'min'
                       : "Updating"
                   }
@@ -141,42 +139,41 @@ const Detail = () => {
 
               <div className="rating">
                 <h3 style={{display: 'inline-block'}}>Rating:</h3>
-                <p title= {item.vote_count && item.vote_average ?
+                <div style={{display: 'inline-block'}} title= {item.vote_count && item.vote_average ?
               item.vote_average.toFixed(1) + " base on " +item.vote_count +" user rating"  :
               ""
-              } 
-                
-                
-                style={{display: 'inline-block'}}>
-                  
-                  {item.vote_average
-                    ? item.vote_average.toFixed(1) + '/10'
-                    : "No voted"
-                  }
-                    {/* <p className="star" style={{display: 'inline-block'}}>
-                      {item.vote_average > 0 &&
-                      Array.from({ length: Math.floor(item.vote_average) }, (_, index) => (
-                      <i key={index} className='bx bxs-star'></i>
-                        ))
-                      }
-                    </p> */}
-                   
-                   {item.vote_average > 0 && (
-                    <p className='star' style={{ display: 'inline-block' }}>
-                      {Array.from({ length: 10 }, (_, index) => {
-                        const isYellow = index < item.vote_average.toFixed();
-                        return (
-                          <i
-                            key={index}
-                            className='bx bxs-star'
-                            style={{ color: isYellow ? '#f5c518' : 'inherit' }}
-                          ></i>
-                        );
-                      })}
-                    </p>
-                  )}
-
-                </p>
+              } >
+                  <p 
+                  style={{display: 'inline-block'}}>
+                    {item.vote_average
+                      ? item.vote_average.toFixed(1) + '/10'
+                      : "No voted"
+                    }
+                      {/* <p className="star" style={{display: 'inline-block'}}>
+                        {item.vote_average > 0 &&
+                        Array.from({ length: Math.floor(item.vote_average) }, (_, index) => (
+                        <i key={index} className='bx bxs-star'></i>
+                          ))
+                        }
+                      </p> */}    
+                  </p>
+                  {item.vote_average > 0 && (
+                      <p className='star' style={{ display: 'inline-block' }}>
+                        {Array.from({ length: 10 }, (_, index) => {
+                          //array.from sẽ lặp qua hết 10 phần tử, {length:10} là một đối tượng giống mảng, _ để biểu thị việc không sử dụng giá trị của phần tử
+                          const isYellow = index < item.vote_average.toFixed();// nếu chỉ số index nhỏ hơn giá trị được làm tròn của vote_average thì sẽ được tô vàng 
+                          return (
+                            <i
+                              key={index}
+                              className='bx bxs-star'
+                              style={{ color: isYellow ? '#f5c518' : 'inherit' }}
+                            ></i>
+                          );
+                        })}
+                      </p>
+                    )}
+                </div>
+              
                 
               </div>
 

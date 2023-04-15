@@ -114,20 +114,8 @@ const MovieGrid = props => {
 
     return (
         <>
-            <div className="section mb-3">
+            <div className="section mb-3"  style={{ position: 'relative' }}>
                 <MovieSearch items={items} category={props.category} keyword={keyword}/>
-                
-                {/* <div className="dropdown">
-                    {  keyword && items.filter(item => {
-                        const searchTerm = keyword.toLowerCase();
-                        const title = item.title.toLowerCase();
-                        return searchTerm && title.startsWith(searchTerm);
-                    })
-                    .map((item) => (
-                    <div className="dropdown-row">{item.title}</div>
-                        ))
-                    }
-                </div> */}
                 <div>
                     <select name="genres" id="genres" onChange={handleSelect}>
                         <option style={{ display: "none" }} value={" "}>Genres</option>
@@ -160,51 +148,22 @@ const MovieGrid = props => {
 const MovieSearch = props => {
     let navigate = useNavigate();
     const headerRef = useRef(null);
-    // const [items, setItems] = useState([]);
-    // useEffect(() => {
-    // const getList = async() =>{
-    //     const params = {};
-    // let response = [];
-    // let page = 1;
-    // let totalPages = 1;
-
-    // switch(props.category) {
-    // case category.movie:
-    //     while (page <= totalPages) {
-    //     const result = await tmdbApi.getMoviesList(movieType.upcoming, {params, page});
-    //     response = [...response, ...result.results];
-    //     totalPages = result.total_pages;
-    //     console.log("totalpages", totalPages);
-    //     console.log(page);
-    //     page++;
-    //     }
-    //     console.log("responseAll:movie",response);
-    //     console.log(
-    //         response.map(itemm => (
-    //             itemm.title
-    //         ))
-    //     )
-        
-    //     break;
-    // default:
-    //     while (page <= totalPages) {
-    //     const result = await tmdbApi.getTvList(tvType.popular, {params, page});
-    //     response = [...response, ...result.results];
-    //     totalPages = result.total_pages;
-    //     console.log("totalpages", totalPages);
-    //     console.log(page);
-    //     page++;
-    //     }
-    //     console.log("responseAll:tv",response);
-    //     break;
-    // }
-
-    // setItems(response);
-    // }
-    // getList();
-    // },[props.category]);
-
+    const [items, setItems] = useState([]);
     const [keyword, setKeyword] = useState(props.keyword ? props.keyword : '');
+    useEffect(() => {
+    const getList = async() =>{
+    let response = null;
+    const params = {
+        query: keyword
+    }
+    response = await tmdbApi.search(props.category, {params});
+
+    setItems(response.results);
+    }
+    getList();
+    },[props.category, keyword]);
+
+
     // console.log("keyword1: ", keyword);
     const onSearch = (searchTerm) =>{
         if(searchTerm.trim().length > 0){
@@ -255,21 +214,8 @@ const MovieSearch = props => {
             </div>
             <div ref={headerRef} className="dropdown" 
             >
-            
-                    {/* { keyword && props.items.filter(item => {
-                        const searchTerm = keyword.toLowerCase();
-                        // const title = item.title.toLowerCase();
-                        const title = item.title ? item.title.toLowerCase() : '';
-                        return searchTerm && title.startsWith(searchTerm) && title !== searchTerm;
-                    }).slice(0,10)
-                    .map((item) => (
-                    <div onClick={()=> onSearch(item.title)} className="dropdown-row"
-                    key={item.title}
-                    >{item.title}</div>
-                        ))
-                    } */}
 
-                    { keyword && props.items.filter(item => {
+                    { keyword && items.filter(item => {
                         const searchTerm = keyword.toLowerCase();
                         // const title = item.title.toLowerCase();
                         const title = item.title ? item.title.toLowerCase() : item.name.toLowerCase();
