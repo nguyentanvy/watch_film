@@ -6,7 +6,7 @@ import Catalog from '../pages/Catalog';
 import Detail from '../pages/detail/Detail';
 import CatalogPopular from '../pages/popular/Catalog_popular'
 import Watch from '../pages/Watch';
-// import { NoMatch } from '../components/NoMatch';
+// import NoMatch  from '../components/NoMatch';
 
 
 const CustomRoutes = () => {
@@ -20,14 +20,6 @@ const CustomRoutes = () => {
           <Route path="/:category/search/:keyword" element={<Catalog />} />
           <Route path="/:category/:id" element={<Detail/>} />
           <Route path="/:category/watch/:id" element={<Watch/>} />
-
-          {/* <Route path="/:movie" element={<Catalog/>}/>
-          <Route path="/:movie/:id" element={<Detail/>}/>
-          <Route path="/:tv" element={<Catalog/>}/> 
-          <Route path="/:tv/:id" element={<Detail/>}/>
-          <Route path="/:tv/search/:keyword" element={<Catalog />} />
-          <Route path="/:movie/search/:keyword" element={<Catalog />} /> */}
-         
           {/* <Route path="*" element={<NoMatch/>}/> */}
           
         </Routes>

@@ -51,7 +51,7 @@ const Detail = () => {
         js.src = "https://connect.facebook.net/en_US/all.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-    }, []);
+    }, [category,id]);
     //lỗi không hiện liên quan đến quá trình init sdk của facebook
 
   return (
