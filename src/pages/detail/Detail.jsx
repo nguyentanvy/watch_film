@@ -8,6 +8,7 @@ import CastList from './CastList';
 import VideoList from './VideoList';
 import MovieList from '../../components/movie-list/MovieList';
 import Button from '../../components/button/Button';
+import Comment from '../../components/socialPlugin/Comment';
 
 const Detail = () => {
   // window.scrollTo(0, 0);
@@ -30,28 +31,28 @@ const Detail = () => {
 
 
 
-    useEffect(() => {
-      if(window.FB){
-        window.FB.XFBML.parse();
-      }
-      // Load Facebook SDK asynchronously
-      window.fbAsyncInit = function() {
-        window.FB.init({
-          // appId      : '1234567890',
-          xfbml      : true,
-          version    : 'v16.0'
-        });
-      };
+    // useEffect(() => {
+    //   if(window.FB){
+    //     window.FB.XFBML.parse();
+    //   }
+    //   // Load Facebook SDK asynchronously
+    //   window.fbAsyncInit = function() {
+    //     window.FB.init({
+    //       // appId      : '1234567890',
+    //       xfbml      : true,
+    //       version    : 'v16.0'
+    //     });
+    //   };
   
-      // Load the SDK's source asynchronously
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/all.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    }, [category,id]);
+    //   // Load the SDK's source asynchronously
+    //   (function(d, s, id) {
+    //     var js, fjs = d.getElementsByTagName(s)[0];
+    //     if (d.getElementById(id)) return;
+    //     js = d.createElement(s); js.id = id;
+    //     js.src = "https://connect.facebook.net/en_US/all.js";
+    //     fjs.parentNode.insertBefore(js, fjs);
+    //   }(document, 'script', 'facebook-jssdk'));
+    // }, [category,id]);
     //lỗi không hiện liên quan đến quá trình init sdk của facebook
 
   return (
@@ -194,7 +195,8 @@ const Detail = () => {
             <div className="section mb-3">
               {/* <div className="fb-comments" data-href={currentUrl} 
                 data-numposts="5" data-width=""></div> */}
-              <div className="fb-comments" data-href={currentUrl} data-numposts="5"></div>
+              {/* <div className="fb-comments" data-href={currentUrl} data-numposts="5"></div> */}
+              <Comment currentUrl={currentUrl}/>
             </div>
             <div className="section mb-3">
               <div className="section__header mb-2">
