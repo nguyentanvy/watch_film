@@ -46,7 +46,7 @@
 import React, { useEffect } from 'react';
 
 function Comment(props) {
-  const {currentUrl}  = props;
+  const {currentUrl, category, id}  = props;
 
   const initFacebookSDK = () => {
     if (window.FB) {
@@ -73,7 +73,7 @@ function Comment(props) {
 
   useEffect(() => {
     initFacebookSDK();
-  }, []);
+  }, [category, id]);
 
   return <div className="fb-comments" data-href={currentUrl} data-width="100%" data-numposts="5"></div>;
 }

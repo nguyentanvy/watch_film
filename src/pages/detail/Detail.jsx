@@ -196,7 +196,7 @@ const Detail = () => {
               {/* <div className="fb-comments" data-href={currentUrl} 
                 data-numposts="5" data-width=""></div> */}
               {/* <div className="fb-comments" data-href={currentUrl} data-numposts="5"></div> */}
-              <Comment currentUrl={currentUrl}/>
+              <Comment category={category} id={id} currentUrl={currentUrl}/>
             </div>
             <div className="section mb-3">
               <div className="section__header mb-2">
