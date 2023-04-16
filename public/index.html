@@ -74,6 +74,9 @@
 
     <!-- Your SDK code -->
     <script>
+      if(window.FB){
+        window.FB.XFBML.parse();
+      }
       window.fbAsyncInit = function() {
         FB.init({
           xfbml            : true,
@@ -116,6 +119,9 @@
     src="https://connect.facebook.net/en_US/all.js"
   ></script>
   <script>
+    if(window.FB){
+        window.FB.XFBML.parse();
+      }
     window.fbAsyncInit = function() {
       FB.init({
         // appId      : '1234567890',
