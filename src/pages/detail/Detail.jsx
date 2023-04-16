@@ -29,8 +29,6 @@ const Detail = () => {
         getDetail();
     }, [category, id]);
 
-
-
     // useEffect(() => {
     //   if(window.FB){
     //     window.FB.XFBML.parse();
