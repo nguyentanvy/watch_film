@@ -150,8 +150,8 @@
 
 }
 .fb-comments{
-    background-color: $white;
-    @include mobile{
-        background-color: $white;
+    background-color: $white !important;
+    iframe{
+        background-color: $white !important;
     }
 }
